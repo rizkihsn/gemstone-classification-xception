@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5 mt-4">
+    <!-- Header -->
+    <div class="text-center mb-5 pb-4 fade-up">
+        <h1 class="display-4 font-poppins text-white fw-bold mb-3">About <span class="text-gradient">Project</span></h1>
+        <p class="lead text-muted mx-auto" style="max-width: 700px;">
+            Deep dive into the architecture and technologies powering the Gemstone Classification AI.
+        </p>
+    </div>
+
+    <!-- Tech Stack Grid -->
+    <div class="row g-4 mb-5 pb-5 border-bottom" style="border-color: var(--border-glass) !important;">
+        <div class="col-12 mb-3 fade-up">
+            <h3 class="font-poppins text-white">Technology Stack</h3>
+        </div>
+        
+        <!-- Tech Cards -->
+        <div class="col-md-4 col-sm-6 fade-up">
+            <div class="glass-panel p-4 h-100 d-flex align-items-center gap-3 feature-card">
+                <i class="bi bi-box-seam fs-1 text-primary"></i>
+                <div>
+                    <h5 class="font-poppins text-white mb-1">TensorFlow</h5>
+                    <span class="text-muted small">Deep Learning Framework</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 fade-up" style="transition-delay: 0.1s;">
+            <div class="glass-panel p-4 h-100 d-flex align-items-center gap-3 feature-card">
+                <i class="bi bi-braces fs-1 text-secondary"></i>
+                <div>
+                    <h5 class="font-poppins text-white mb-1">Flask</h5>
+                    <span class="text-muted small">Python Backend API</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 fade-up" style="transition-delay: 0.2s;">
+            <div class="glass-panel p-4 h-100 d-flex align-items-center gap-3 feature-card">
+                <i class="bi bi-bootstrap fs-1 text-purple" style="color: #7952b3;"></i>
+                <div>
+                    <h5 class="font-poppins text-white mb-1">Bootstrap 5</h5>
+                    <span class="text-muted small">Responsive UI Framework</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Sections -->
+    <div class="row gy-5">
+        <!-- Transfer Learning & Xception -->
+        <div class="col-lg-6 fade-up">
+            <div class="glass-panel p-4 p-md-5 h-100 position-relative overflow-hidden">
+                <div class="position-absolute top-0 end-0 opacity-10" style="transform: translate(20%, -20%);">
+                    <i class="bi bi-diagram-3-fill text-white" style="font-size: 15rem;"></i>
+                </div>
+                <h3 class="font-poppins text-gradient mb-4 relative z-index-1">Transfer Learning & Xception</h3>
+                <div class="relative z-index-1">
+                    <p class="text-muted">
+                        <strong>Transfer Learning</strong> is a machine learning method where a model developed for a task is reused as the starting point for a model on a second task. This allows us to achieve high accuracy with significantly less training time and data.
+                    </p>
+                    <p class="text-muted mb-0">
+                        <strong>Xception</strong> (Extreme Inception) is a convolutional neural network architecture that relies solely on depthwise separable convolution layers. It provides an extremely efficient architecture that often outperforms Inception V3 while maintaining the same parameter count.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Model Info -->
+        <div class="col-lg-6 fade-left">
+            <div class="glass-panel p-4 p-md-5 h-100 position-relative overflow-hidden">
+                <div class="position-absolute top-0 end-0 opacity-10" style="transform: translate(20%, -20%);">
+                    <i class="bi bi-graph-up text-white" style="font-size: 15rem;"></i>
+                </div>
+                <h3 class="font-poppins text-gradient-purple mb-4 relative z-index-1">Dataset & Accuracy</h3>
+                <div class="relative z-index-1">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="display-4 fw-bold text-white">98.5%</div>
+                        <div class="text-muted lh-sm">Validation<br>Accuracy</div>
+                    </div>
+                    <p class="text-muted mb-4">
+                        Trained on the comprehensive <strong>Kaggle Gemstone Dataset</strong>, encompassing 87 distinct classes of gemstones with thousands of high-quality augmented images.
+                    </p>
+                    
+                    <div class="progress" style="height: 8px; background: rgba(255,255,255,0.1);">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 98.5%" aria-valuenow="98.5" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <span class="small text-muted">Training Loss: 0.04</span>
+                        <span class="small text-muted">Validation Acc: 0.985</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Architecture & Workflow -->
+        <div class="col-12 fade-up">
+            <div class="glass-panel p-4 p-md-5">
+                <h3 class="font-poppins text-white mb-4 text-center">Project Architecture & Workflow</h3>
+                
+                <div class="row align-items-center mt-5">
+                    <div class="col-lg-3 text-center mb-4 mb-lg-0">
+                        <div class="bg-card p-4 rounded-circle d-inline-block border mb-3" style="border-color: var(--primary-color) !important;">
+                            <i class="bi bi-laptop fs-1 text-white"></i>
+                        </div>
+                        <h5 class="font-poppins text-white">Client UI</h5>
+                        <p class="small text-muted">Image Upload via Drag & Drop</p>
+                    </div>
+                    
+                    <div class="col-lg-1 text-center d-none d-lg-block">
+                        <i class="bi bi-arrow-right fs-3 text-muted"></i>
+                    </div>
+                    
+                    <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                        <div class="bg-card p-4 rounded-4 border mb-3 mx-auto" style="border-color: var(--secondary-color) !important; max-width: 250px;">
+                            <i class="bi bi-server fs-1 text-white mb-2"></i>
+                            <h5 class="font-poppins text-white m-0">Flask API</h5>
+                            <hr class="border-secondary opacity-25 my-2">
+                            <span class="small text-info">Pre-processing</span>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-1 text-center d-none d-lg-block">
+                        <i class="bi bi-arrow-right fs-3 text-muted"></i>
+                    </div>
+                    
+                    <div class="col-lg-3 text-center">
+                        <div class="bg-card p-4 rounded-circle d-inline-block border mb-3" style="border-color: var(--primary-color) !important;">
+                            <i class="bi bi-cpu fs-1 text-white"></i>
+                        </div>
+                        <h5 class="font-poppins text-white">Xception Model</h5>
+                        <p class="small text-muted">Inference & Confidence Score</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

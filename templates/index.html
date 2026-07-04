@@ -1,0 +1,327 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="min-vh-100 d-flex align-items-center position-relative pt-5 pb-5 mt-n5">
+    <div class="container relative z-index-1">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-6 fade-up">
+                <div class="d-inline-flex align-items-center bg-card rounded-pill border px-3 py-1 mb-4" style="border-color: var(--border-glass) !important; background: var(--bg-card);">
+                    <span class="spinner-grow spinner-grow-sm text-info me-2" role="status" aria-hidden="true" style="width: 10px; height: 10px;"></span>
+                    <span class="small text-info fw-semibold">Xception Transfer Learning v2.0</span>
+                </div>
+                <h1 class="display-3 fw-bold mb-4 font-poppins text-white" style="line-height: 1.2;">
+                    Gemstone <br>
+                    Classification <br>
+                    using <span class="text-gradient">AI</span>
+                </h1>
+                <p class="lead text-muted mb-5 pe-lg-4" style="font-size: 1.15rem;">
+                    Identify gemstone types instantly using Artificial Intelligence powered by Transfer Learning Xception. Upload an image and let our deep learning model analyze it with high accuracy.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{{ url_for('predict') }}" class="btn btn-ai btn-lg">
+                        <i class="bi bi-stars me-2"></i>Start Prediction
+                    </a>
+                    <a href="{{ url_for('about') }}" class="btn btn-outline-ai btn-lg">
+                        Learn More
+                    </a>
+                </div>
+                
+                <div class="d-flex gap-4 mt-5 pt-3 border-top" style="border-color: var(--border-glass) !important;">
+                    <div>
+                        <h4 class="font-poppins text-white mb-0">98.5%</h4>
+                        <span class="small text-muted">Model Accuracy</span>
+                    </div>
+                    <div>
+                        <h4 class="font-poppins text-white mb-0">87k+</h4>
+                        <span class="small text-muted">Dataset Images</span>
+                    </div>
+                    <div>
+                        <h4 class="font-poppins text-white mb-0">&lt;2s</h4>
+                        <span class="small text-muted">Prediction Time</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 fade-left text-center">
+                <div class="position-relative d-inline-block">
+                    <!-- Decorative background glow behind illustration -->
+                    <div class="position-absolute top-50 start-50 translate-middle rounded-circle" style="width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,0.3) 0%, rgba(0,0,0,0) 70%); z-index: -1;"></div>
+                    
+                    <!-- We use CSS shapes and icons for a modern abstract illustration since we don't have images -->
+                    <div class="glass-panel p-4 floating" style="width: 400px; max-width: 100%; height: auto; border: 1px solid rgba(139,92,246,0.3);">
+                        <div class="d-flex justify-content-between mb-4 pb-3 border-bottom" style="border-color: var(--border-glass) !important;">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-cpu-fill text-info fs-4"></i>
+                                <span class="fw-semibold text-white">AI Processor</span>
+                            </div>
+                            <span class="badge bg-success bg-opacity-25 text-success border border-success d-flex align-items-center px-2 py-1">Active</span>
+                        </div>
+                        
+                        <!-- Simulated scanning UI -->
+                        <div class="position-relative mb-4 bg-dark rounded-3 overflow-hidden" style="height: 200px; border: 1px solid var(--border-glass);">
+                            <div class="position-absolute top-50 start-50 translate-middle text-center w-100">
+                                <i class="bi bi-gem text-white opacity-25" style="font-size: 8rem;"></i>
+                            </div>
+                            <!-- Scanner line animation -->
+                            <div class="position-absolute w-100" style="height: 2px; background: var(--primary-color); top: 0; box-shadow: 0 0 10px 2px var(--primary-color); animation: scan 3s linear infinite;"></div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-muted small">Status: Analyzing...</span>
+                            <span class="font-poppins text-gradient fw-bold">Sapphire</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5 my-5">
+    <div class="container">
+        <div class="text-center mb-5 pb-3 fade-up">
+            <span class="text-secondary fw-semibold tracking-wide text-uppercase small">Why Choose GemAI</span>
+            <h2 class="display-5 font-poppins text-white mt-2">Powerful Features</h2>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Card 1 -->
+            <div class="col-lg-4 col-md-6 fade-up">
+                <div class="glass-panel feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="bi bi-bullseye"></i>
+                    </div>
+                    <h4 class="font-poppins text-white mb-3">High Accuracy</h4>
+                    <p class="text-muted mb-0">Achieves up to 98.5% validation accuracy in classifying various gemstone species using advanced deep learning.</p>
+                </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="col-lg-4 col-md-6 fade-up" style="transition-delay: 0.1s;">
+                <div class="glass-panel feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="bi bi-layers-fill"></i>
+                    </div>
+                    <h4 class="font-poppins text-white mb-3">Transfer Learning</h4>
+                    <p class="text-muted mb-0">Leverages pre-trained weights from ImageNet, drastically reducing training time while maximizing feature extraction.</p>
+                </div>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="col-lg-4 col-md-6 fade-up" style="transition-delay: 0.2s;">
+                <div class="glass-panel feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="bi bi-cpu-fill"></i>
+                    </div>
+                    <h4 class="font-poppins text-white mb-3">Xception CNN</h4>
+                    <p class="text-muted mb-0">Utilizes Depthwise Separable Convolutions for a highly efficient architecture that outperforms traditional Inception models.</p>
+                </div>
+            </div>
+            
+            <!-- Card 4 -->
+            <div class="col-lg-4 col-md-6 fade-up">
+                <div class="glass-panel feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                    </div>
+                    <h4 class="font-poppins text-white mb-3">Fast Prediction</h4>
+                    <p class="text-muted mb-0">Optimized inference pipeline via Flask ensures that predictions are delivered in under 2 seconds.</p>
+                </div>
+            </div>
+            
+            <!-- Card 5 -->
+            <div class="col-lg-4 col-md-6 fade-up" style="transition-delay: 0.1s;">
+                <div class="glass-panel feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="bi bi-laptop"></i>
+                    </div>
+                    <h4 class="font-poppins text-white mb-3">Responsive UI</h4>
+                    <p class="text-muted mb-0">A flawless experience across desktop, tablet, and mobile devices, built with modern CSS and Bootstrap 5.</p>
+                </div>
+            </div>
+            
+            <!-- Card 6 -->
+            <div class="col-lg-4 col-md-6 fade-up" style="transition-delay: 0.2s;">
+                <div class="glass-panel feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="bi bi-hand-index-thumb"></i>
+                    </div>
+                    <h4 class="font-poppins text-white mb-3">Easy to Use</h4>
+                    <p class="text-muted mb-0">Intuitive drag-and-drop interface. Just upload an image and let the Artificial Intelligence do the heavy lifting.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How it works -->
+<section class="py-5 my-5 bg-black bg-opacity-25" style="border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass);">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-5 mb-5 mb-lg-0 fade-left">
+                <h2 class="display-5 font-poppins text-white mb-4">How It Works</h2>
+                <p class="text-muted lead mb-4">Our pipeline is optimized to process your images quickly through a state-of-the-art Neural Network.</p>
+                <a href="{{ url_for('predict') }}" class="btn btn-outline-ai">Try It Now</a>
+            </div>
+            
+            <div class="col-lg-6 offset-lg-1 fade-up">
+                <div class="timeline-step d-flex gap-4">
+                    <div class="timeline-icon">1</div>
+                    <div>
+                        <h5 class="font-poppins text-white mb-2">Upload Image</h5>
+                        <p class="text-muted">Provide a clear image of a gemstone in JPG or PNG format.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-step d-flex gap-4">
+                    <div class="timeline-icon">2</div>
+                    <div>
+                        <h5 class="font-poppins text-white mb-2">AI Processing</h5>
+                        <p class="text-muted">Image is resized to 224x224 and normalized for the Xception model.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-step d-flex gap-4">
+                    <div class="timeline-icon">3</div>
+                    <div>
+                        <h5 class="font-poppins text-white mb-2">Prediction</h5>
+                        <p class="text-muted">The neural network extracts features and calculates class probabilities.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-step d-flex gap-4">
+                    <div class="timeline-icon">4</div>
+                    <div>
+                        <h5 class="font-poppins text-white mb-2">Result</h5>
+                        <p class="text-muted">Get instant classification results with an AI confidence score.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Supported Gemstones -->
+<section class="py-5 my-5">
+    <div class="container">
+        <div class="text-center mb-5 pb-3 fade-up">
+            <h2 class="display-5 font-poppins text-white mt-2">Supported Gemstones</h2>
+            <p class="text-muted">Our model is trained to recognize 87 different classes. Here are some popular ones.</p>
+        </div>
+        
+        <!-- CSS Grid for responsive gemstone cards -->
+        <style>
+            .gem-grid {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                gap: 1.5rem;
+            }
+            @media (min-width: 768px) {
+                .gem-grid { grid-template-columns: repeat(2, 1fr); }
+            }
+            @media (min-width: 992px) {
+                .gem-grid { grid-template-columns: repeat(4, 1fr); }
+            }
+            .gem-card {
+                aspect-ratio: 1;
+                border-radius: 20px;
+                background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+                border: 1px solid var(--border-glass);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition-smooth);
+                cursor: default;
+                position: relative;
+                overflow: hidden;
+            }
+            .gem-card::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+                z-index: 1;
+            }
+            .gem-card:hover {
+                transform: translateY(-5px);
+                border-color: var(--primary-color);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 0 20px rgba(139,92,246,0.2);
+            }
+            .gem-card i {
+                font-size: 3.5rem;
+                color: rgba(255,255,255,0.2);
+                z-index: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                transition: var(--transition-smooth);
+            }
+            .gem-card:hover i {
+                color: var(--primary-color);
+                transform: translate(-50%, -60%) scale(1.1);
+            }
+            .gem-name {
+                position: absolute;
+                bottom: 20px;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                z-index: 2;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 600;
+                letter-spacing: 1px;
+            }
+        </style>
+        
+        <div class="gem-grid fade-up">
+            <div class="gem-card">
+                <i class="bi bi-gem"></i>
+                <div class="gem-name text-white">Amethyst</div>
+            </div>
+            <div class="gem-card">
+                <i class="bi bi-gem"></i>
+                <div class="gem-name text-white">Aquamarine</div>
+            </div>
+            <div class="gem-card">
+                <i class="bi bi-gem"></i>
+                <div class="gem-name text-white">Citrine</div>
+            </div>
+            <div class="gem-card">
+                <i class="bi bi-gem"></i>
+                <div class="gem-name text-white">Diamond</div>
+            </div>
+            <div class="gem-card">
+                <i class="bi bi-gem"></i>
+                <div class="gem-name text-white">Emerald</div>
+            </div>
+            <div class="gem-card">
+                <i class="bi bi-gem"></i>
+                <div class="gem-name text-white">Peridot</div>
+            </div>
+            <div class="gem-card">
+                <i class="bi bi-gem"></i>
+                <div class="gem-name text-white">Ruby</div>
+            </div>
+            <div class="gem-card">
+                <i class="bi bi-gem"></i>
+                <div class="gem-name text-white">Sapphire Blue</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional inline CSS for scanner animation -->
+<style>
+@keyframes scan {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+</style>
+
+{% endblock %}

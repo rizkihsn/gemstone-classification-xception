@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5 mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 fade-up">
+            
+            <div class="text-center mb-5">
+                <h1 class="display-5 font-poppins text-white fw-bold mb-3">AI Prediction</h1>
+                <p class="text-muted">
+                    Upload an image of a gemstone. Our Xception model will instantly classify it and provide a confidence score.
+                </p>
+            </div>
+
+            <div class="glass-panel p-4 p-md-5 position-relative">
+                <!-- Loading Overlay -->
+                <div id="loadingOverlay" class="position-absolute w-100 h-100 top-0 start-0 bg-card d-none flex-column align-items-center justify-content-center rounded-4" style="backdrop-filter: blur(8px); z-index: 10;">
+                    <!-- Custom CSS Scanner -->
+                    <div class="position-relative mb-4 bg-dark rounded-3 overflow-hidden" style="width: 200px; height: 200px; border: 1px solid var(--border-glass);">
+                        <div class="position-absolute top-50 start-50 translate-middle text-center w-100">
+                            <i class="bi bi-cpu text-white opacity-25" style="font-size: 5rem;"></i>
+                        </div>
+                        <div class="position-absolute w-100" style="height: 3px; background: var(--secondary-color); top: 0; box-shadow: 0 0 15px 3px var(--secondary-color); animation: scan 2s ease-in-out infinite;"></div>
+                    </div>
+                    <h5 class="font-poppins text-white mt-3 pulse-text">Analyzing Image Structure...</h5>
+                    <p class="text-muted small">Running inference via Xception Neural Network</p>
+                </div>
+
+                <form id="predictionForm" action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label font-poppins text-white m-0 fw-semibold">Upload Image</label>
+                            <span class="badge bg-dark border text-muted">JPG, PNG</span>
+                        </div>
+                        
+                        <!-- Drag & Drop Zone -->
+                        <div class="upload-zone" id="uploadZone">
+                            <input class="d-none" type="file" id="imageInput" name="image" accept="image/png, image/jpeg, image/jpg" required>
+                            
+                            <i class="bi bi-cloud-arrow-up upload-icon" id="uploadIcon"></i>
+                            
+                            <!-- Image Preview Area -->
+                            <img id="imagePreview" src="#" alt="Preview" class="d-none img-fluid rounded-3 shadow-sm mx-auto mb-3" style="max-height: 300px; object-fit: contain; border: 1px solid var(--border-glass);">
+                            
+                            <div id="uploadText">
+                                <h5 class="text-white font-poppins mb-1">Drag & Drop</h5>
+                                <p class="text-muted small mb-3">or click to browse from your computer</p>
+                                <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-4">Browse Files</button>
+                            </div>
+
+                            <button type="button" id="resetBtn" class="btn btn-sm btn-outline-danger d-none position-absolute top-0 end-0 m-3 rounded-circle p-2" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; z-index: 5;">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid mt-5">
+                        <button type="submit" class="btn btn-ai btn-lg shadow-sm" id="submitBtn" disabled>
+                            <i class="bi bi-stars me-2"></i> Classify Gemstone
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+            
+            <!-- Tips -->
+            <div class="row mt-4 g-3 fade-up" style="transition-delay: 0.2s;">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center gap-2 text-muted small p-2 bg-dark rounded border border-secondary border-opacity-10">
+                        <i class="bi bi-lightbulb text-warning"></i>
+                        <span>Use a well-lit image for higher accuracy.</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center gap-2 text-muted small p-2 bg-dark rounded border border-secondary border-opacity-10">
+                        <i class="bi bi-crop text-info"></i>
+                        <span>Center the gemstone in the frame.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+@keyframes scan {
+    0% { top: 0; opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+.pulse-text {
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
+}
+</style>
+{% endblock %}

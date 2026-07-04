@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5 mt-4">
+    <div class="text-center mb-5 fade-up">
+        <h1 class="display-5 font-poppins text-white fw-bold">Analysis <span class="text-gradient">Complete</span></h1>
+        <p class="text-muted">Here are the details from our AI model prediction.</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="glass-panel overflow-hidden fade-up" style="transition-delay: 0.1s;">
+                <div class="row g-0 align-items-stretch">
+                    
+                    <!-- Image Section -->
+                    <div class="col-md-5 bg-black bg-opacity-50 position-relative">
+                        <!-- Subtle Glow Effect Behind Image -->
+                        <div class="position-absolute top-50 start-50 translate-middle rounded-circle" style="width: 80%; height: 80%; background: radial-gradient(circle, rgba(139,92,246,0.2) 0%, rgba(0,0,0,0) 70%); z-index: 0;"></div>
+                        
+                        <div class="p-4 p-md-5 h-100 d-flex flex-column justify-content-center align-items-center relative z-index-1" style="border-right: 1px solid var(--border-glass);">
+                            {% if image %}
+                                <img src="{{ url_for('static', filename='uploads/' + image) }}" class="img-fluid rounded-4 shadow-lg mb-3" alt="Uploaded Gemstone" style="max-height: 350px; object-fit: contain; border: 1px solid rgba(255,255,255,0.1);">
+                                <span class="badge bg-dark border text-muted small mt-2"><i class="bi bi-file-earmark-image me-1"></i> {{ image }}</span>
+                            {% else %}
+                                <div class="text-center p-5 border border-dashed rounded-4" style="border-color: rgba(255,255,255,0.1) !important;">
+                                    <i class="bi bi-image text-muted" style="font-size: 4rem;"></i>
+                                    <p class="text-muted mt-3 mb-0">No image provided.</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Result Section -->
+                    <div class="col-md-7 p-4 p-md-5">
+                        
+                        <!-- Prediction -->
+                        <div class="mb-5 fade-left" style="transition-delay: 0.3s;">
+                            <span class="text-secondary fw-semibold tracking-wide text-uppercase small d-block mb-2">Classified As</span>
+                            <h2 class="display-4 font-poppins text-white fw-bold mb-0">
+                                {% if prediction == "Tidak ada gambar." or prediction == "Belum memilih gambar." %}
+                                    <span class="text-muted">Error</span>
+                                {% else %}
+                                    {{ prediction | capitalize }}
+                                {% endif %}
+                            </h2>
+                            {% if prediction != "Tidak ada gambar." and prediction != "Belum memilih gambar." %}
+                                <div class="d-inline-flex align-items-center gap-2 mt-3 px-3 py-1 rounded-pill bg-success bg-opacity-10 border border-success border-opacity-25 text-success">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span class="small fw-semibold">High Confidence Match</span>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Confidence Score -->
+                        {% if confidence %}
+                        <div class="mb-5 fade-left" style="transition-delay: 0.4s;">
+                            <div class="d-flex justify-content-between align-items-end mb-2">
+                                <h6 class="font-poppins text-white m-0">AI Confidence Score</h6>
+                                <span class="font-poppins fw-bold text-white fs-4">{{ confidence }}%</span>
+                            </div>
+                            <!-- Animated Progress Bar -->
+                            <div class="confidence-track">
+                                <div class="confidence-fill" data-width="{{ confidence }}%"></div>
+                            </div>
+                            <p class="text-muted small mt-2 mb-0">
+                                {% if confidence >= 80 %}
+                                    The model is highly confident in this classification.
+                                {% elif confidence >= 50 %}
+                                    The model is moderately confident. Consider re-uploading a clearer image.
+                                {% else %}
+                                    Low confidence. The image might be ambiguous or out of distribution.
+                                {% endif %}
+                            </p>
+                        </div>
+                        {% endif %}
+
+                        <!-- Model Details -->
+                        <div class="bg-dark bg-opacity-50 p-4 rounded-4 border mb-5 fade-left" style="border-color: var(--border-glass) !important; transition-delay: 0.5s;">
+                            <h6 class="font-poppins text-white mb-3">Model Inference Details</h6>
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <span class="text-muted small d-block">Model</span>
+                                    <span class="text-white fw-semibold">Xception V1</span>
+                                </div>
+                                <div class="col-6">
+                                    <span class="text-muted small d-block">Target Size</span>
+                                    <span class="text-white fw-semibold">224 x 224 px</span>
+                                </div>
+                                <div class="col-6">
+                                    <span class="text-muted small d-block">Time</span>
+                                    <span class="text-white fw-semibold">&lt; 1.5s</span>
+                                </div>
+                                <div class="col-6">
+                                    <span class="text-muted small d-block">Status</span>
+                                    <span class="text-success fw-semibold">Success</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="d-flex gap-3 fade-left" style="transition-delay: 0.6s;">
+                            <a href="{{ url_for('predict') }}" class="btn btn-ai px-4 flex-grow-1">
+                                <i class="bi bi-arrow-repeat me-2"></i> Predict Again
+                            </a>
+                            <a href="{{ url_for('index') }}" class="btn btn-outline-ai px-4">
+                                Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
