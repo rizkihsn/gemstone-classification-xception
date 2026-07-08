@@ -5,7 +5,7 @@
 <section class="min-vh-100 d-flex align-items-center position-relative pt-5 pb-5 mt-n5">
     <div class="container relative z-index-1">
         <div class="row align-items-center gy-5">
-            <div class="col-lg-6 fade-up">
+            <div class="col-lg-6">
                 <div class="d-inline-flex align-items-center bg-card rounded-pill border px-3 py-1 mb-4" style="border-color: var(--border-glass) !important; background: var(--bg-card);">
                     <span class="spinner-grow spinner-grow-sm text-info me-2" role="status" aria-hidden="true" style="width: 10px; height: 10px;"></span>
                     <span class="small text-info fw-semibold">Xception Transfer Learning v2.0</span>
@@ -44,32 +44,35 @@
             </div>
             
             <div class="col-lg-6 fade-left text-center">
-                <div class="position-relative d-inline-block">
-                    <!-- Decorative background glow behind illustration -->
-                    <div class="position-absolute top-50 start-50 translate-middle rounded-circle" style="width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,0.3) 0%, rgba(0,0,0,0) 70%); z-index: -1;"></div>
+                <div class="position-relative d-inline-flex align-items-center justify-content-center" style="width: 440px; max-width: 100%;">
+                    <!-- Decorative glow rings -->
+                    <div class="position-absolute top-50 start-50 translate-middle rounded-circle" style="width: 420px; height: 420px; background: radial-gradient(circle, rgba(139,92,246,0.25) 0%, rgba(6,182,212,0.1) 40%, transparent 70%); z-index: 0; animation: pulse-glow-bg 4s ease-in-out infinite;"></div>
+                    <div class="position-absolute top-50 start-50 translate-middle rounded-circle" style="width: 320px; height: 320px; border: 1px solid rgba(139,92,246,0.2); z-index: 0; animation: rotate-ring 12s linear infinite;"></div>
+                    <div class="position-absolute top-50 start-50 translate-middle rounded-circle" style="width: 380px; height: 380px; border: 1px dashed rgba(6,182,212,0.15); z-index: 0; animation: rotate-ring 20s linear infinite reverse;"></div>
                     
-                    <!-- We use CSS shapes and icons for a modern abstract illustration since we don't have images -->
-                    <div class="glass-panel p-4 floating" style="width: 400px; max-width: 100%; height: auto; border: 1px solid rgba(139,92,246,0.3);">
-                        <div class="d-flex justify-content-between mb-4 pb-3 border-bottom" style="border-color: var(--border-glass) !important;">
+                    <!-- Diamond Image -->
+                    <img src="{{ url_for('static', filename='diamond_hero.png') }}" 
+                         alt="3D Diamond Gemstone" 
+                         class="floating" 
+                         style="width: 340px; max-width: 100%; position: relative; z-index: 1; filter: drop-shadow(0 0 40px rgba(139,92,246,0.6)) drop-shadow(0 0 80px rgba(6,182,212,0.3));">
+                    
+                    <!-- Floating badge top-right -->
+                    <div class="position-absolute" style="top: 30px; right: 0px; z-index: 2;">
+                        <div class="glass-panel px-3 py-2" style="border-color: rgba(139,92,246,0.4); border-radius: 12px;">
                             <div class="d-flex align-items-center gap-2">
-                                <i class="bi bi-cpu-fill text-info fs-4"></i>
-                                <span class="fw-semibold text-white">AI Processor</span>
+                                <span class="spinner-grow spinner-grow-sm text-success" style="width: 8px; height: 8px;"></span>
+                                <span class="small fw-semibold text-white">AI Active</span>
                             </div>
-                            <span class="badge bg-success bg-opacity-25 text-success border border-success d-flex align-items-center px-2 py-1">Active</span>
                         </div>
-                        
-                        <!-- Simulated scanning UI -->
-                        <div class="position-relative mb-4 bg-dark rounded-3 overflow-hidden" style="height: 200px; border: 1px solid var(--border-glass);">
-                            <div class="position-absolute top-50 start-50 translate-middle text-center w-100">
-                                <i class="bi bi-gem text-white opacity-25" style="font-size: 8rem;"></i>
+                    </div>
+                    
+                    <!-- Floating accuracy badge bottom-left -->
+                    <div class="position-absolute" style="bottom: 30px; left: 0px; z-index: 2;">
+                        <div class="glass-panel px-3 py-2" style="border-color: rgba(6,182,212,0.4); border-radius: 12px;">
+                            <div class="text-center">
+                                <div class="fw-bold text-gradient" style="font-family: Poppins, sans-serif; font-size: 1.1rem;">98.5%</div>
+                                <div class="small text-muted" style="font-size: 0.7rem;">Accuracy</div>
                             </div>
-                            <!-- Scanner line animation -->
-                            <div class="position-absolute w-100" style="height: 2px; background: var(--primary-color); top: 0; box-shadow: 0 0 10px 2px var(--primary-color); animation: scan 3s linear infinite;"></div>
-                        </div>
-                        
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="text-muted small">Status: Analyzing...</span>
-                            <span class="font-poppins text-gradient fw-bold">Sapphire</span>
                         </div>
                     </div>
                 </div>
@@ -227,8 +230,8 @@
             .gem-card {
                 aspect-ratio: 1;
                 border-radius: 20px;
-                background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-                border: 1px solid var(--border-glass);
+                background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(6,182,212,0.04));
+                border: 1px solid rgba(139,92,246,0.2);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -242,85 +245,107 @@
                 content: '';
                 position: absolute;
                 inset: 0;
-                background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+                background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.7) 100%);
                 z-index: 1;
+                pointer-events: none;
             }
             .gem-card:hover {
-                transform: translateY(-5px);
+                transform: translateY(-8px);
                 border-color: var(--primary-color);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 0 20px rgba(139,92,246,0.2);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(139,92,246,0.3), inset 0 0 20px rgba(139,92,246,0.1);
             }
-            .gem-card i {
-                font-size: 3.5rem;
-                color: rgba(255,255,255,0.2);
-                z-index: 0;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+            .gem-icon-wrap {
+                width: 70px;
+                height: 70px;
+                background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(6,182,212,0.2));
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid rgba(139,92,246,0.3);
+                margin-bottom: 12px;
+                position: relative;
+                z-index: 2;
                 transition: var(--transition-smooth);
             }
-            .gem-card:hover i {
-                color: var(--primary-color);
-                transform: translate(-50%, -60%) scale(1.1);
+            .gem-icon-wrap i {
+                font-size: 2rem;
+                background: linear-gradient(135deg, #C084FC, #06B6D4);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            .gem-card:hover .gem-icon-wrap {
+                background: linear-gradient(135deg, rgba(139,92,246,0.5), rgba(6,182,212,0.4));
+                transform: scale(1.1) rotate(5deg);
+                box-shadow: 0 0 20px rgba(139,92,246,0.5);
             }
             .gem-name {
                 position: absolute;
-                bottom: 20px;
+                bottom: 16px;
                 left: 0;
                 width: 100%;
                 text-align: center;
                 z-index: 2;
                 font-family: 'Poppins', sans-serif;
                 font-weight: 600;
-                letter-spacing: 1px;
+                letter-spacing: 0.5px;
+                font-size: 0.9rem;
+                color: #ffffff;
+                text-shadow: 0 1px 8px rgba(0,0,0,0.8);
             }
         </style>
         
         <div class="gem-grid fade-up">
-            <div class="gem-card">
-                <i class="bi bi-gem"></i>
-                <div class="gem-name text-white">Amethyst</div>
+            <div class="gem-card" style="background-image: url('{{ url_for('static', filename='images/Amethyst.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="gem-name">Amethyst</div>
             </div>
-            <div class="gem-card">
-                <i class="bi bi-gem"></i>
-                <div class="gem-name text-white">Aquamarine</div>
+            <div class="gem-card" style="background-image: url('{{ url_for('static', filename='images/Aquamarine.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="gem-name">Aquamarine</div>
             </div>
-            <div class="gem-card">
-                <i class="bi bi-gem"></i>
-                <div class="gem-name text-white">Citrine</div>
+            <div class="gem-card" style="background-image: url('{{ url_for('static', filename='images/Citrine.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="gem-name">Citrine</div>
             </div>
-            <div class="gem-card">
-                <i class="bi bi-gem"></i>
-                <div class="gem-name text-white">Diamond</div>
+            <div class="gem-card" style="background-image: url('{{ url_for('static', filename='images/Diamond.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="gem-name">Diamond</div>
             </div>
-            <div class="gem-card">
-                <i class="bi bi-gem"></i>
-                <div class="gem-name text-white">Emerald</div>
+            <div class="gem-card" style="background-image: url('{{ url_for('static', filename='images/Emerald.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="gem-name">Emerald</div>
             </div>
-            <div class="gem-card">
-                <i class="bi bi-gem"></i>
-                <div class="gem-name text-white">Peridot</div>
+            <div class="gem-card" style="background-image: url('{{ url_for('static', filename='images/Peridot.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="gem-name">Peridot</div>
             </div>
-            <div class="gem-card">
-                <i class="bi bi-gem"></i>
-                <div class="gem-name text-white">Ruby</div>
+            <div class="gem-card" style="background-image: url('{{ url_for('static', filename='images/Ruby.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="gem-name">Ruby</div>
             </div>
-            <div class="gem-card">
-                <i class="bi bi-gem"></i>
-                <div class="gem-name text-white">Sapphire Blue</div>
+            <div class="gem-card" style="background-image: url('{{ url_for('static', filename='images/Sapphire Blue.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="gem-name">Sapphire Blue</div>
+            </div>
+            <div class="gem-card" style="background-image: url('{{ url_for('static', filename='images/Tigers Eye.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="gem-name">Tigers Eye</div>
+            </div>
+            <div class="gem-card" style="background-image: url('{{ url_for('static', filename='images/Tourmaline.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="gem-name">Tourmaline</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Additional inline CSS for scanner animation -->
+<!-- Additional inline CSS for animations -->
 <style>
 @keyframes scan {
     0% { top: 0; opacity: 0; }
     10% { opacity: 1; }
     90% { opacity: 1; }
     100% { top: 100%; opacity: 0; }
+}
+@keyframes pulse-glow-bg {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+}
+@keyframes rotate-ring {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 </style>
 

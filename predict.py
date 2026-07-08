@@ -1,10 +1,24 @@
 import numpy as np
 from PIL import Image, ImageOps
+import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.applications.xception import preprocess_input
 
-# Load model
-model = load_model("model/gemstone_xception_final.keras")
+# --- FIX UNTUK ERROR GLOROTUNIFORM VERSION MISMATCH ---
+# Membuat initializer modifikasi agar mengabaikan input_axes dan output_axes jika tidak didukung
+@tf.keras.utils.register_keras_serializable(package="Custom")
+class CompatibleGlorotUniform(tf.keras.initializers.GlorotUniform):
+    def __init__(self, seed=None, **kwargs):
+        kwargs.pop('input_axes', None)
+        kwargs.pop('output_axes', None)
+        super().__init__(seed=seed, **kwargs)
+
+# Load model dengan menyisipkan CompatibleGlorotUniform ke custom_objects
+model = load_model(
+    "model/gemstone_xception_final.keras",
+    custom_objects={"GlorotUniform": CompatibleGlorotUniform}
+)
+# -----------------------------------------------------
 
 # Label kelas (HARUS sama dengan train_generator.class_indices)
 CLASS_NAMES = [
@@ -41,4 +55,4 @@ def predict_image(image_path):
     index = np.argmax(prediction)
     confidence = float(np.max(prediction)) * 100
 
-    return CLASS_NAMES[index], confidence
+    return CLASS_NAMES[index], confidence

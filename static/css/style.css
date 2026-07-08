@@ -5,10 +5,10 @@
     --primary-hover: #7C3AED;
     --secondary-color: #06B6D4; /* Cyan */
     --bg-dark: #0B0F19; /* Deep Space Navy */
-    --bg-card: rgba(17, 24, 39, 0.7); /* Glass Card Bg */
-    --bg-card-hover: rgba(31, 41, 55, 0.8);
+    --bg-card: rgba(17, 24, 39, 0.75); /* Glass Card Bg */
+    --bg-card-hover: rgba(31, 41, 55, 0.9);
     --text-main: #F3F4F6;
-    --text-muted: #9CA3AF;
+    --text-muted: #B0B7C3;
     --border-glass: rgba(255, 255, 255, 0.08);
     --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.5);
     --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.4);
@@ -27,6 +27,10 @@ body {
 /* Typography */
 h1, h2, h3, h4, h5, h6, .navbar-brand, .btn, .font-poppins {
     font-family: 'Poppins', sans-serif;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
 }
 
 .text-gradient {
@@ -139,13 +143,22 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .btn, .font-poppins {
     transition: var(--transition-smooth);
     height: 100%;
     padding: 2rem;
+    min-height: 220px;
+}
+
+.feature-card p.text-muted,
+.feature-card p {
+    color: var(--text-muted) !important;
+    opacity: 1 !important;
+    line-height: 1.7;
+    font-size: 0.95rem;
 }
 
 .feature-card:hover {
     transform: translateY(-8px);
     background: var(--bg-card-hover);
     border-color: rgba(139, 92, 246, 0.3);
-    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.7), 0 0 15px rgba(139, 92, 246, 0.1);
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.7), 0 0 15px rgba(139, 92, 246, 0.15);
 }
 
 .feature-icon-wrapper {
