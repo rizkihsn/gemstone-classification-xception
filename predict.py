@@ -20,7 +20,7 @@ if not os.path.exists(MODEL_PATH):
     print(">>> Model tidak ditemukan. Mengunduh dari Google Drive...")
     os.makedirs("model", exist_ok=True)
     url = f"https://drive.google.com/uc?id={GDRIVE_FILE_ID}"
-    gdown.download(url, MODEL_PATH, quiet=False, fuzzy=True)
+    gdown.download(url, MODEL_PATH, quiet=False)
     print(">>> Download selesai!")
 else:
     print(">>> Model ditemukan secara lokal, skip download.")
