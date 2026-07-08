@@ -67,6 +67,10 @@ python app.py
 Open your browser and navigate to:
 `http://localhost:8080` (or the port shown in your terminal)
 
+## 6. Access railway links
+Open your browser and navigate to:
+https://web-production-b8109.up.railway.app
+
 ## How to Deploy to Railway / Render ☁️
 
 1. Upload/Push this code to your GitHub repository.
