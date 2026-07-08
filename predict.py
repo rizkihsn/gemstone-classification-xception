@@ -1,11 +1,33 @@
+import os
 import numpy as np
 from PIL import Image, ImageOps
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.applications.xception import preprocess_input
+import gdown
 
-# --- FIX UNTUK ERROR GLOROTUNIFORM VERSION MISMATCH ---
-# Membuat initializer modifikasi agar mengabaikan input_axes dan output_axes jika tidak didukung
+# =====================================================
+# AUTO-DOWNLOAD MODEL DARI GOOGLE DRIVE
+# =====================================================
+MODEL_PATH = "model/gemstone_xception_final.keras"
+
+# Ganti GDRIVE_FILE_ID dengan File ID dari link share Google Drive Anda
+# Contoh link: https://drive.google.com/file/d/1A2B3C4D5E6F.../view?usp=sharing
+#                                                ^^^^^^^^^^^^^^^^^ ini adalah File ID-nya
+GDRIVE_FILE_ID = os.environ.get("GDRIVE_FILE_ID", "1HwfegIGfP-WkmQQLusLNAsUEhrtW1O5I")
+
+if not os.path.exists(MODEL_PATH):
+    print(">>> Model tidak ditemukan. Mengunduh dari Google Drive...")
+    os.makedirs("model", exist_ok=True)
+    url = f"https://drive.google.com/uc?id={GDRIVE_FILE_ID}"
+    gdown.download(url, MODEL_PATH, quiet=False, fuzzy=True)
+    print(">>> Download selesai!")
+else:
+    print(">>> Model ditemukan secara lokal, skip download.")
+
+# =====================================================
+# FIX UNTUK ERROR GLOROTUNIFORM VERSION MISMATCH
+# =====================================================
 @tf.keras.utils.register_keras_serializable(package="Custom")
 class CompatibleGlorotUniform(tf.keras.initializers.GlorotUniform):
     def __init__(self, seed=None, **kwargs):
@@ -13,12 +35,14 @@ class CompatibleGlorotUniform(tf.keras.initializers.GlorotUniform):
         kwargs.pop('output_axes', None)
         super().__init__(seed=seed, **kwargs)
 
-# Load model dengan menyisipkan CompatibleGlorotUniform ke custom_objects
+# Load model
 model = load_model(
-    "model/gemstone_xception_final.keras",
+    MODEL_PATH,
     custom_objects={"GlorotUniform": CompatibleGlorotUniform}
 )
-# -----------------------------------------------------
+print(">>> Model berhasil dimuat!")
+# =====================================================
+
 
 # Label kelas (HARUS sama dengan train_generator.class_indices)
 CLASS_NAMES = [
